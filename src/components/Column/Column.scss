@@ -1,0 +1,68 @@
+@import '_settings.scss';
+
+$list-bg-color: #ebecf0;
+$column-header-height: 36px;
+$column-footer-height: 36px;
+$column-border-radius: 5px;
+
+.column {
+  flex: 0 0 auto;
+
+  width: 300px;
+  height: calc(100% - #{$gap});
+
+  &:not(:first-child) {
+    margin-left: $gap;
+  }
+
+  > * {
+    color: #333;
+    padding: 0 8px;
+    background-color: $list-bg-color;
+  }
+
+  header {
+    height: $column-header-height;
+    line-height: $column-header-height;
+
+    font-size: 16px;
+    font-weight: bold;
+    padding-left: 15px;
+
+    border-top-left-radius: $column-border-radius;
+    border-top-right-radius: $column-border-radius;
+  }
+
+  footer {
+    height: $column-footer-height;
+    line-height: $column-footer-height;
+
+    font-size: 14px;
+    padding-left: 10px;
+
+    border-bottom-left-radius: $column-border-radius;
+    border-bottom-right-radius: $column-border-radius;
+  }
+
+  ul.task-list {
+    margin: 0;
+
+    list-style-type: none;
+    overflow-y: auto;
+    max-height: calc(
+      100% - #{$column-header-height} - #{$column-footer-height}
+    );
+
+    &::-webkit-scrollbar {
+      -webkit-appearance: none;
+    }
+
+    &::-webkit-scrollbar:vertical {
+      width: 11px;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-right: 5px solid $list-bg-color;
+      background-color: darken($list-bg-color, 15);
+    }
+  }
+}
