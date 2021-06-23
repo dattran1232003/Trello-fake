@@ -1,19 +1,30 @@
+import PropTypes from 'prop-types'
+
 import './Column.scss'
 
-import Task from '../Task/Task'
+import Card from '../Card/Card'
+import { mapOrder } from 'utilities/sorts'
 
-function Column() {
+Column.propTypes = {
+  column: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    cards: PropTypes.array.isRequired,
+    cardOrder: PropTypes.arrayOf(PropTypes.string),
+  }).isRequired,
+}
+
+function Column({ column }) {
+  const { title, cards, cardOrder } = column
+
   return (
     <div className="column">
-      <header>Brainstorm</header>
+      <header>{title}</header>
 
-      <ul className="task-list">
-        <Task />
-        <li className="task-item">Add what you{"'"}d like to work on below</li>
-        <li className="task-item">Add what you{"'"}d like to work on below</li>
-        <li className="task-item">Add what you{"'"}d like to work on below</li>
-        <li className="task-item">Add what you{"'"}d like to work on below</li>
-        <li className="task-item">Add what you{"'"}d like to work on below</li>
+      <ul className="card-list">
+        {mapOrder(cards, cardOrder, 'id').map((card) => (
+          <Card key={card.id} card={card} />
+        ))}
       </ul>
 
       <footer>Add another card</footer>
