@@ -5,8 +5,8 @@ Card.propTypes = {
   card: PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    cover: PropTypes.string,
-  }),
+    cover: PropTypes.string
+  })
 }
 
 function Card({ card }) {
