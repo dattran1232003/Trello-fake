@@ -1,5 +1,6 @@
 import { isEmpty } from 'lodash'
 import { useState, useEffect } from 'react'
+import { Container, Draggable } from 'react-smooth-dnd'
 
 import './BoardContent.scss'
 
@@ -21,6 +22,10 @@ function BoardContent() {
     }
   }, [])
 
+  const onColumnDrop = (dropResult) => {
+    console.log(dropResult)
+  }
+
   return isEmpty(board) ? (
     <div
       className="not-found"
@@ -33,9 +38,23 @@ function BoardContent() {
     </div>
   ) : (
     <div className="board-content">
-      {columns.map((col) => (
-        <Column key={col.id} column={col} />
-      ))}
+      <Container
+        orientation="horizontal"
+        onDrop={onColumnDrop}
+        getChildPayload={(index) => columns[index]}
+        dragHandleSelector=".column-drag-handle"
+        dropPlaceholder={{
+          animationDuration: 150,
+          showOnTop: true,
+          className: 'column-drop-preview',
+        }}
+      >
+        {columns.map((col) => (
+          <Draggable key={col.id}>
+            <Column column={col} />
+          </Draggable>
+        ))}
+      </Container>
     </div>
   )
 }
