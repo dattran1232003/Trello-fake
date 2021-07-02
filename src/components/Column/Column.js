@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import { Container, Draggable } from 'react-smooth-dnd'
 
 import './Column.scss'
 
@@ -17,15 +18,37 @@ Column.propTypes = {
 function Column({ column }) {
   const { title, cards, cardOrder } = column
 
+  const onCardDrop = (dropResult) => {
+    console.log(dropResult)
+  }
+
   return (
     <div className="column">
-      <header>{title}</header>
+      <header className="column-drag-handle">{title}</header>
 
-      <ul className="card-list">
-        {mapOrder(cards, cardOrder, 'id').map((card) => (
-          <Card key={card.id} card={card} />
-        ))}
-      </ul>
+      <div className="card-list">
+        <Container
+          orientation="vertical" // default
+          groupName="cards"
+          dragClass="card-ghost"
+          dropClass="card-gost-drop"
+          dragHandleSelector=".card-drag-handle"
+          dropPlaceholder={{
+            animationDuration: 150,
+            showOnTop: true,
+            className: 'cards-drop-preview',
+          }}
+          dropPlaceholderAnimationDuration={200}
+          onDrop={onCardDrop}
+          getChildPayload={(index) => cards[index]}
+        >
+          {mapOrder(cards, cardOrder, 'id').map((card) => (
+            <Draggable key={card.id}>
+              <Card card={card} />
+            </Draggable>
+          ))}
+        </Container>
+      </div>
 
       <footer>Add another card</footer>
     </div>

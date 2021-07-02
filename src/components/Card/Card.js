@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+
 import './Card.scss'
 
 Card.propTypes = {
@@ -13,10 +14,10 @@ function Card({ card }) {
   const { title, cover } = card
 
   return (
-    <li className="card-item">
+    <div className="card-item card-drag-handle">
       {cover && <img className="card-cover" src={cover} alt="dattran image" />}
       {title}
-    </li>
+    </div>
   )
 }
 

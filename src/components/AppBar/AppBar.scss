@@ -6,7 +6,9 @@ $appbar-bg-color: #0067a3;
   display: flex;
   align-items: center;
 
-  padding-left: $gap;
+  height: $navbar-app-height;
+
   font-size: 1.5rem;
+  padding-left: $gap;
   background-color: $appbar-bg-color;
 }
