@@ -14,11 +14,10 @@ body {
 }
 
 .master {
-  display: inline-grid;
-  grid-template-rows: 40px 50px 1fr;
-
   height: 100vh;
   line-height: 1.3em;
+
+  overflow-y: hidden;
 
   background-color: $board-bg-color;
 }
