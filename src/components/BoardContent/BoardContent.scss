@@ -4,6 +4,10 @@
   // display: flex;
   // margin: 0 $gap;
 
+  & .column:not(:last-child) {
+    margin-right: $gap;
+  }
+
   overflow-x: auto;
   overflow-y: hidden;
 
@@ -24,6 +28,6 @@
   .column-drop-preview {
     background-color: rgba(150, 150, 200, 0.1);
     border: 1px dashed #abc;
-    margin: 5px 5px 5px 5px;
+    margin: 5px 5px 5px (0);
   }
 }

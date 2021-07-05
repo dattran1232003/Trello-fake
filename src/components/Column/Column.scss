@@ -6,10 +6,10 @@ $column-footer-height: 36px;
 $column-border-radius: 5px;
 
 .column {
-  flex: 0 0 auto;
-
   width: 300px;
   height: calc(100% - #{$gap});
+
+  margin-right: $gap;
 
   > * {
     color: #333;
@@ -66,18 +66,22 @@ $column-border-radius: 5px;
   }
 
   .card-ghost {
-    transition: transform 0.18s ease;
+    transition: transform 0.18s ease, font-weight 0.18s;
     transform: rotateZ(5deg);
+
+    font-weight: bold;
   }
 
   .card-ghost-drop {
-    transition: transform 0.18s ease-in-out;
     transform: rotateZ(0deg);
+    transition: transform 0.18s ease-in-out, font-weight 0.18s;
+
+    font-weight: bold;
   }
 
   .cards-drop-preview {
     border: 1px dashed #abc;
-    background-color: rgba(150, 150, 200, 0.1);
     border-radius: $column-border-radius;
+    background-color: rgba(150, 150, 200, 0.1);
   }
 }
