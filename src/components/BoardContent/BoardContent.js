@@ -37,29 +37,22 @@ function BoardContent() {
 
   const onCardDrop = (columnId, dropResult) => {
     if (dropResult.removedIndex !== null || dropResult.addedIndex !== null) {
-      const columnIndex = columns.findIndex((col) => col.id === columnId)
-      const column = columns[columnIndex]
+      const newColumns = [...columns]
+      const column = newColumns.find(({ id }) => id === columnId)
 
       const newCards = applyDrag(column.cards, dropResult)
 
-      const newColumn = {
-        ...column,
-        cards: newCards,
-        cardOrder: newCards.map(getId),
-      }
+      // mutation, column is a reference to newColumns[idx of columnId]
+      column.cards = newCards
+      column.cardOrder = newCards.map(getId)
 
-      // using map to create new Array and release last array
-      const newColumnsList = columns.map((col, i) =>
-        i === columnIndex ? newColumn : col
-      )
+      setColumns(newColumns)
 
+      // update base data
       const newBoard = {
         ...board,
-        columns: newColumnsList,
-        columnOrder: newColumnsList.map(getId),
+        columns: newColumns,
       }
-
-      setColumns(newColumnsList)
       setBoard(newBoard)
     }
   }
