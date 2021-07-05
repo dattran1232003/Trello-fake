@@ -86,6 +86,10 @@ function BoardContent() {
           </Draggable>
         ))}
       </Container>
+
+      <div className="add-new-column">
+        <i className="fa fa-plus icon" /> Add new column
+      </div>
     </div>
   )
 }

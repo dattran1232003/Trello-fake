@@ -11,8 +11,10 @@ $column-border-radius: 5px;
 
   margin-right: $gap;
 
+  overflow-y: auto;
+  height: $board-content-height;
+
   > * {
-    color: #333;
     padding: 0 8px;
     background-color: $list-bg-color;
   }
@@ -42,15 +44,26 @@ $column-border-radius: 5px;
 
     border-bottom-left-radius: $column-border-radius;
     border-bottom-right-radius: $column-border-radius;
+
+    color: #888;
+
+    .footer-actions {
+      cursor: pointer;
+      margin-left: $gap;
+
+      &:hover {
+        color: $app-main-text-color;
+      }
+    }
   }
 
   .card-list {
     margin: 0;
 
-    overflow-y: auto;
     max-height: calc(
-      100% - #{$column-header-height} - #{$column-footer-height}
+      100% - #{$gap} - #{$column-footer-height} - #{$column-header-height}
     );
+    overflow: auto;
 
     &::-webkit-scrollbar {
       -webkit-appearance: none;
